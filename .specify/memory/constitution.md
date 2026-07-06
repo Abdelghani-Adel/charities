@@ -1,13 +1,14 @@
 <!--
   Sync Impact Report
-  Version change: (none) -> 1.0.0
-  Modified principles: N/A (initial creation)
-  Added sections: Core Principles (I-XV), Technical Stack & Constraints, Development Workflow, Governance
+  Version change: 1.0.0 -> 1.1.0
+  Modified principles:
+    - XIV. Documentation — added bullet requiring TDD record per spec
+  Added sections: N/A
   Removed sections: N/A
   Templates requiring updates:
-    - .specify/templates/plan-template.md ✅ (no changes needed)
-    - .specify/templates/spec-template.md ✅ (no changes needed)
-    - .specify/templates/tasks-template.md ✅ (no changes needed)
+    - .specify/templates/spec-template.md ✅ (updated — TDD record metadata line)
+    - .specify/templates/plan-template.md ✅ (updated — docs/tdd/ in Documentation section)
+    - .specify/templates/tasks-template.md ✅ (updated — TDD creation task in Polish phase)
   Follow-up TODOs:
     - TODO(RATIFICATION_DATE): Original adoption date unknown. Determine and update.
 -->
@@ -136,6 +137,9 @@
 - Business workflows MUST be documented alongside implementation.
 - Changes affecting shared collaboration or data integrity MUST have updated
   documentation.
+- Every specification MUST produce a Technical Design Document (TDD) record in
+  the `docs/` directory, detailing business rules and the high-level technical
+  implementation approach.
 
 ### XV. Guiding Principles
 
@@ -222,4 +226,4 @@ and implementations MUST comply with the principles and rules above.
 - Any complexity beyond what principles justify MUST be documented and
   explicitly approved.
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2026-07-05
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2026-07-06
