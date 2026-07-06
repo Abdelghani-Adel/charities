@@ -1,4 +1,13 @@
-const API_BASE = "/api/v1";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "/api/v1";
+
+function getAcceptLanguage(): string {
+  try {
+    const lang = localStorage.getItem("i18nextLng") || navigator.language || "ar";
+    return lang.split("-")[0] === "en" ? "en" : "ar";
+  } catch {
+    return "ar";
+  }
+}
 
 export class ApiClient {
   private token: string | null = null;
@@ -20,6 +29,7 @@ export class ApiClient {
     if (this.token) {
       headers["Authorization"] = `Bearer ${this.token}`;
     }
+    headers["Accept-Language"] = getAcceptLanguage();
 
     const res = await fetch(`${API_BASE}${path}`, {
       method,
@@ -29,6 +39,12 @@ export class ApiClient {
 
     const json = await res.json();
     if (!res.ok) {
+      if (res.status === 401 && this.token) {
+        this.clearToken();
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("auth_expires_at");
+        window.location.href = "/login";
+      }
       throw new ApiError(json.message ?? "Request failed", json.code, json.correlationId);
     }
     return json.data;

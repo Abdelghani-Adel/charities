@@ -54,6 +54,10 @@ specs/[###-feature]/
 ├── quickstart.md        # Phase 1 output (/speckit.plan command)
 ├── contracts/           # Phase 1 output (/speckit.plan command)
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+
+docs/
+└── tdd/
+    └── [###-feature-name].md  # TDD record (created per Constitution XIV)
 ```
 
 ### Source Code (repository root)

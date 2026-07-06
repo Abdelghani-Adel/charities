@@ -8,6 +8,8 @@
 
 **Input**: User description: "$ARGUMENTS"
 
+**TDD Record**: `docs/tdd/[###-feature-name].md` *(create per Constitution XIV)*
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--

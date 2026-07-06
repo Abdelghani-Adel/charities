@@ -1,22 +1,22 @@
-import { Controller, Post, Body, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { Controller, Post, Body, Req, UseGuards } from "@nestjs/common";
+import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
+import { AuthService } from "./auth.service";
 import { Public } from "./public.decorator";
+import { Request } from "express";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private jwtService: JwtService) {}
+  constructor(private authService: AuthService) {}
 
   @Public()
+  @UseGuards(ThrottlerGuard)
+  @Throttle({ default: { ttl: 60000, limit: 10 } })
   @Post("login")
-  async login(@Body() loginDto: { email: string; password: string }) {
-    // TODO: Replace with real user validation from database
-    if (loginDto.email === "admin@charity.com" && loginDto.password === "password") {
-      const payload = { sub: "user-1", email: loginDto.email, charityId: "charity-1", role: "admin" };
-      return {
-        status: "success",
-        data: { accessToken: this.jwtService.sign(payload) },
-      };
-    }
-    throw new UnauthorizedException("Invalid credentials");
+  async login(
+    @Body() loginDto: { email: string; password: string },
+    @Req() req: Request,
+  ) {
+    const ipAddress = req.ip ?? req.socket.remoteAddress ?? "unknown";
+    return this.authService.login(loginDto.email, loginDto.password, ipAddress);
   }
 }

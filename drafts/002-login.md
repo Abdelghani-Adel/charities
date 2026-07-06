@@ -1,0 +1,8 @@
+- build the login screen in the frontend and connects it with the backend api
+- handle saving the returned token in the frontend and add it to each request after that
+- handle taosting error messages to the user, it should be localized on the backend side, so the frontend should always send the accept-language locale
+- the scope is only the login, don't care about registration yet
+- on the backend, make sure to validate the user against database and return as signed token
+- on the frontend, create auth-guard to check if the token is not in the browser to redirect the user to '/login' screen
+- after successful login, redirect the user to the '/' root, this will be the dashboard
+- update any ADR required with these changes and feel free to create new one if needed
