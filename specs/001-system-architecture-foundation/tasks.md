@@ -33,15 +33,15 @@ description: "Task list for implementing the System Architecture Foundation"
 
 **Purpose**: Project initialization and monorepo structure
 
-- [ ] T001 Initialize root package.json with npm workspaces at `/package.json`
-- [ ] T002 [P] Create apps/backend NestJS project with `@nestjs/cli` at `/apps/backend/`
-- [ ] T003 [P] Create apps/frontend Vite + React + TypeScript project at `/apps/frontend/`
-- [ ] T004 [P] Create packages/api-contracts TypeScript library at `/packages/api-contracts/`
-- [ ] T005 [P] Create packages/shared TypeScript library at `/packages/shared/`
-- [ ] T006 [P] Create packages/config TypeScript library at `/packages/config/`
-- [ ] T007 [P] Configure ESLint flat config at `/eslint.config.js` and Prettier at `/.prettierrc`
-- [ ] T008 [P] Configure root tsconfig with project references at `/tsconfig.json`
-- [ ] T009 Create root scripts (`setup`, `build`, `lint`, `typecheck`, `test`, `ci`) in `/package.json`
+- [x] T001 Initialize root package.json with npm workspaces at `/package.json`
+- [x] T002 [P] Create apps/backend NestJS project with `@nestjs/cli` at `/apps/backend/`
+- [x] T003 [P] Create apps/frontend Vite + React + TypeScript project at `/apps/frontend/`
+- [x] T004 [P] Create packages/api-contracts TypeScript library at `/packages/api-contracts/`
+- [x] T005 [P] Create packages/shared TypeScript library at `/packages/shared/`
+- [x] T006 [P] Create packages/config TypeScript library at `/packages/config/`
+- [x] T007 [P] Configure ESLint flat config at `/eslint.config.js` and Prettier at `/.prettierrc`
+- [x] T008 [P] Configure root tsconfig with project references at `/tsconfig.json`
+- [x] T009 Create root scripts (`setup`, `build`, `lint`, `typecheck`, `test`, `ci`) in `/package.json`
 
 ---
 
@@ -51,10 +51,10 @@ description: "Task list for implementing the System Architecture Foundation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T010 [P] Configure Prisma with PostgreSQL in `/apps/backend/prisma/schema.prisma` — add base conventions (UUID PKs, timestamps, soft-delete mixin)
-- [ ] T011 [P] Create NestJS common module structure at `/apps/backend/src/common/` — include empty global filter, pipe, and interceptor directories
-- [ ] T012 [P] Create shared environment configuration in `/packages/config/src/env.ts` with validation
-- [ ] T013 Set up GitHub Actions CI workflow at `/.github/workflows/ci.yml` — lint, typecheck, test, build stages
+- [x] T010 [P] Configure Prisma with PostgreSQL in `/apps/backend/prisma/schema.prisma` — add base conventions (UUID PKs, timestamps, soft-delete mixin)
+- [x] T011 [P] Create NestJS common module structure at `/apps/backend/src/common/` — include empty global filter, pipe, and interceptor directories
+- [x] T012 [P] Create shared environment configuration in `/packages/config/src/env.ts` with validation
+- [x] T013 Set up GitHub Actions CI workflow at `/.github/workflows/ci.yml` — lint, typecheck, test, build stages
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
 
@@ -68,10 +68,10 @@ description: "Task list for implementing the System Architecture Foundation"
 
 ### Implementation for User Story 1
 
-- [ ] T014 [P] [US1] Create root `.gitignore` with Node.js defaults at `/.gitignore`
-- [ ] T015 [P] [US1] Configure npm workspace scripts (install, build, lint, typecheck) in `/package.json` using `--workspaces` flag
-- [ ] T016 [P] [US1] Create build ordering — add `"build"` script in each package/package.json with correct dependency order in root `/package.json`
-- [ ] T017 [US1] Verify monorepo builds end-to-end — run `npm install && npm run build && npm run lint && npm run typecheck` and fix any issues
+- [x] T014 [P] [US1] Create root `.gitignore` with Node.js defaults at `/.gitignore`
+- [x] T015 [P] [US1] Configure npm workspace scripts (install, build, lint, typecheck) in `/package.json` using `--workspaces` flag
+- [x] T016 [P] [US1] Create build ordering — add `"build"` script in each package/package.json with correct dependency order in root `/package.json`
+- [x] T017 [US1] Verify monorepo builds end-to-end — run `npm install && npm run build && npm run lint && npm run typecheck` and fix any issues
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -85,16 +85,16 @@ description: "Task list for implementing the System Architecture Foundation"
 
 ### Implementation for User Story 2
 
-- [ ] T018 [P] [US2] Create Charity and User Prisma models in `/apps/backend/prisma/schema.prisma` per data-model.md
-- [ ] T019 [P] [US2] Create Role Permission Prisma model in `/apps/backend/prisma/schema.prisma` per data-model.md
-- [ ] T020 [P] [US2] Create initial Prisma migration with `npx prisma migrate dev --name init` in `/apps/backend/prisma/migrations/`
-- [ ] T021 [P] [US2] Create NestJS AppModule with global prefix `/api/v1` in `/apps/backend/src/app.module.ts`
-- [ ] T022 [P] [US2] Create health-check module — controller at `/apps/backend/src/health/health.controller.ts`, module at `/apps/backend/src/health/health.module.ts`
-- [ ] T023 [US2] Configure PrismaModule and database connection in `/apps/backend/src/prisma/` — include service and module
-- [ ] T024 [P] [US2] Create NestJS Passport JWT auth module — strategy at `/apps/backend/src/auth/jwt.strategy.ts`, guard at `/apps/backend/src/auth/jwt-auth.guard.ts`, module at `/apps/backend/src/auth/auth.module.ts`
-- [ ] T025 [P] [US2] Create auth endpoints — login controller at `/apps/backend/src/auth/auth.controller.ts` with `/api/v1/auth/login` POST
-- [ ] T026 [US2] Configure NestJS CORS, validation pipe, and global prefix in `/apps/backend/src/main.ts`
-- [ ] T027 [US2] Write backend integration tests — health endpoint, auth login flow, unauthenticated rejection in `/apps/backend/tests/integration/`
+- [x] T018 [P] [US2] Create Charity and User Prisma models in `/apps/backend/prisma/schema.prisma` per data-model.md
+- [x] T019 [P] [US2] Create Role Permission Prisma model in `/apps/backend/prisma/schema.prisma` per data-model.md
+- [x] T020 [P] [US2] Create initial Prisma migration with `npx prisma migrate dev --name init` in `/apps/backend/prisma/migrations/`
+- [x] T021 [P] [US2] Create NestJS AppModule with global prefix `/api/v1` in `/apps/backend/src/app.module.ts`
+- [x] T022 [P] [US2] Create health-check module — controller at `/apps/backend/src/health/health.controller.ts`, module at `/apps/backend/src/health/health.module.ts`
+- [x] T023 [US2] Configure PrismaModule and database connection in `/apps/backend/src/prisma/` — include service and module
+- [x] T024 [P] [US2] Create NestJS Passport JWT auth module — strategy at `/apps/backend/src/auth/jwt.strategy.ts`, guard at `/apps/backend/src/auth/jwt-auth.guard.ts`, module at `/apps/backend/src/auth/auth.module.ts`
+- [x] T025 [P] [US2] Create auth endpoints — login controller at `/apps/backend/src/auth/auth.controller.ts` with `/api/v1/auth/login` POST
+- [x] T026 [US2] Configure NestJS CORS, validation pipe, and global prefix in `/apps/backend/src/main.ts`
+- [x] T027 [US2] Write backend integration tests — health endpoint, auth login flow, unauthenticated rejection in `/apps/backend/tests/integration/`
 
 **Checkpoint**: At this point, User Story 2 should be fully functional and testable independently
 
@@ -108,16 +108,16 @@ description: "Task list for implementing the System Architecture Foundation"
 
 ### Implementation for User Story 3
 
-- [ ] T028 [P] [US3] Create shared API contracts in `/packages/api-contracts/src/` — Zod validation schemas for Charity, User, Indigent, Auth (login/register) DTOs, and API route type definitions
-- [ ] T029 [P] [US3] Create shared enums and constants in `/packages/shared/src/` — role enums, aid type enums, error code constants
-- [ ] T030 [P] [US3] Create Vite + React app entry at `/apps/frontend/src/main.tsx` with TanStack Router provider
-- [ ] T031 [P] [US3] Create shadcn/ui component configuration at `/apps/frontend/components.json` and install base UI primitives
-- [ ] T032 [US3] Configure react-i18next with Arabic as default locale at `/apps/frontend/src/i18n/` — include locale detection and Arabic translation files
-- [ ] T033 [US3] Set up TanStack Router with route tree at `/apps/frontend/src/routes/` — include login route placeholder
-- [ ] T034 [P] [US3] Create login page component in `/apps/frontend/src/pages/Login.tsx`
-- [ ] T035 [P] [US3] Create API client service layer in `/apps/frontend/src/services/api.ts` using shared contracts
-- [ ] T036 [US3] Configure RTL layout — set `dir="rtl"` on HTML element, apply RTL-aware styles in `/apps/frontend/src/layouts/RootLayout.tsx`
-- [ ] T037 [US3] Verify frontend builds and renders — `cd apps/frontend && npm run dev` — no contract import errors, Arabic RTL layout renders
+- [x] T028 [P] [US3] Create shared API contracts in `/packages/api-contracts/src/` — Zod validation schemas for Charity, User, Indigent, Auth (login/register) DTOs, and API route type definitions
+- [x] T029 [P] [US3] Create shared enums and constants in `/packages/shared/src/` — role enums, aid type enums, error code constants
+- [x] T030 [P] [US3] Create Vite + React app entry at `/apps/frontend/src/main.tsx` with TanStack Router provider
+- [x] T031 [P] [US3] Create shadcn/ui component configuration at `/apps/frontend/components.json` and install base UI primitives
+- [x] T032 [US3] Configure react-i18next with Arabic as default locale at `/apps/frontend/src/i18n/` — include locale detection and Arabic translation files
+- [x] T033 [US3] Set up TanStack Router with route tree at `/apps/frontend/src/routes/` — include login route placeholder
+- [x] T034 [P] [US3] Create login page component in `/apps/frontend/src/pages/Login.tsx`
+- [x] T035 [P] [US3] Create API client service layer in `/apps/frontend/src/services/api.ts` using shared contracts
+- [x] T036 [US3] Configure RTL layout — set `dir="rtl"` on HTML element, apply RTL-aware styles in `/apps/frontend/src/layouts/RootLayout.tsx`
+- [x] T037 [US3] Verify frontend builds and renders — `cd apps/frontend && npm run dev` — no contract import errors, Arabic RTL layout renders
 
 **Checkpoint**: At this point, User Stories 1–3 should all work independently
 
@@ -131,10 +131,10 @@ description: "Task list for implementing the System Architecture Foundation"
 
 ### Implementation for User Story 4
 
-- [ ] T038 [P] [US4] Create tenant context resolver middleware at `/apps/backend/src/common/middleware/tenant.middleware.ts` — extract charity_id from JWT claims
-- [ ] T039 [P] [US4] Create tenant-scoped repository base class at `/apps/backend/src/common/repositories/tenant.repository.ts` — auto-filters queries by charity_id
-- [ ] T040 [US4] Register tenant middleware globally in `/apps/backend/src/app.module.ts` — apply to all protected routes
-- [ ] T041 [US4] Write tenant isolation integration tests in `/apps/backend/tests/integration/tenant-isolation.spec.ts` — mock two charities, verify cross-tenant 403
+- [x] T038 [P] [US4] Create tenant context resolver middleware at `/apps/backend/src/common/middleware/tenant.middleware.ts` — extract charity_id from JWT claims
+- [x] T039 [P] [US4] Create tenant-scoped repository base class at `/apps/backend/src/common/repositories/tenant.repository.ts` — auto-filters queries by charity_id
+- [x] T040 [US4] Register tenant middleware globally in `/apps/backend/src/app.module.ts` — apply to all protected routes
+- [x] T041 [US4] Write tenant isolation integration tests in `/apps/backend/tests/integration/tenant-isolation.spec.ts` — mock two charities, verify cross-tenant 403
 
 **Checkpoint**: At this point, User Story 4 should be fully functional and testable independently
 
@@ -148,12 +148,12 @@ description: "Task list for implementing the System Architecture Foundation"
 
 ### Implementation for User Story 5
 
-- [ ] T042 [P] [US5] Create global exception filter at `/apps/backend/src/common/filters/http-exception.filter.ts` — returns standardized `{ status, message, code, correlationId }` format per contracts/api-response.md
-- [ ] T043 [P] [US5] Configure Pino structured logging with NestJS logger at `/apps/backend/src/common/logger/pino-logger.service.ts`
-- [ ] T044 [US5] Create correlation ID interceptor at `/apps/backend/src/common/interceptors/correlation.interceptor.ts` — generates UUID per request, injects into request context
-- [ ] T045 [US5] Create standardized response interceptor at `/apps/backend/src/common/interceptors/response.interceptor.ts` — wraps all successful responses in `{ status: "success", data }` format
-- [ ] T046 [P] [US5] Register exception filter, interceptors, and logger globally in `/apps/backend/src/app.module.ts`
-- [ ] T047 [US5] Write error handling and logging tests in `/apps/backend/tests/integration/error-logging.spec.ts` — verify error format, correlationId presence, log output
+- [x] T042 [P] [US5] Create global exception filter at `/apps/backend/src/common/filters/http-exception.filter.ts` — returns standardized `{ status, message, code, correlationId }` format per contracts/api-response.md
+- [x] T043 [P] [US5] Configure Pino structured logging with NestJS logger at `/apps/backend/src/common/logger/pino-logger.service.ts`
+- [x] T044 [US5] Create correlation ID interceptor at `/apps/backend/src/common/interceptors/correlation.interceptor.ts` — generates UUID per request, injects into request context
+- [x] T045 [US5] Create standardized response interceptor at `/apps/backend/src/common/interceptors/response.interceptor.ts` — wraps all successful responses in `{ status: "success", data }` format
+- [x] T046 [P] [US5] Register exception filter, interceptors, and logger globally in `/apps/backend/src/app.module.ts`
+- [x] T047 [US5] Write error handling and logging tests in `/apps/backend/tests/integration/error-logging.spec.ts` — verify error format, correlationId presence, log output
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -163,11 +163,11 @@ description: "Task list for implementing the System Architecture Foundation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T048 [P] Write ADR for monorepo structure decision in `/docs/adr/001-monorepo-structure.md`
-- [ ] T049 [P] Write ADR for API versioning strategy in `/docs/adr/002-api-versioning.md`
-- [ ] T050 [P] Write ADR for tenant isolation approach in `/docs/adr/003-tenant-isolation.md`
-- [ ] T051 Run quickstart.md validation — execute all 10 steps, fix any issues
-- [ ] T052 Final security review — verify no secrets in code, auth guards on all protected routes, CORS restricted
+- [x] T048 [P] Write ADR for monorepo structure decision in `/docs/adr/001-monorepo-structure.md`
+- [x] T049 [P] Write ADR for API versioning strategy in `/docs/adr/002-api-versioning.md`
+- [x] T050 [P] Write ADR for tenant isolation approach in `/docs/adr/003-tenant-isolation.md`
+- [x] T051 Run quickstart.md validation — execute all 10 steps, fix any issues
+- [x] T052 Final security review — verify no secrets in code, auth guards on all protected routes, CORS restricted
 
 ---
 

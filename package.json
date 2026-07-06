@@ -1,0 +1,29 @@
+{
+  "name": "charities",
+  "private": true,
+  "workspaces": [
+    "apps/backend",
+    "apps/frontend",
+    "packages/api-contracts",
+    "packages/shared",
+    "packages/config"
+  ],
+  "scripts": {
+    "setup": "npm install",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint .",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "ci": "npm run lint && npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^7.2.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

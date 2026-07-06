@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Charity {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  locale    String   @default("ar")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  users         User[]
+  aidRecords    AidRecord[]
+  auditLogs     AuditLog[]
+  abuseReports  AbuseReport[]
+  changeRequests ChangeRequest[]
+
+  @@map("charities")
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  charityId    String   @map("charity_id") @db.Uuid
+  email        String
+  name         String
+  passwordHash String   @map("password_hash")
+  role         String   @default("viewer")
+  isActive     Boolean  @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  charity     Charity      @relation(fields: [charityId], references: [id])
+  auditLogs   AuditLog[]
+  aidRecords  AidRecord[]
+  indigents   Indigent[]
+  abuseReports AbuseReport[]
+  changeRequests ChangeRequest[]
+
+  @@unique([email, charityId])
+  @@map("users")
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique
+  permissions Json   @db.JsonB
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("roles")
+}
+
+model Indigent {
+  id         String   @id @default(uuid()) @db.Uuid
+  fullName   String   @map("full_name")
+  dateOfBirth DateTime @map("date_of_birth")
+  nationalId String   @unique @map("national_id")
+  phone      String?
+  address    String?
+  createdBy  String   @map("created_by") @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  creator      User           @relation(fields: [createdBy], references: [id])
+  aidRecords   AidRecord[]
+  abuseReports AbuseReport[]
+  changeRequests ChangeRequest[]
+
+  @@map("indigents")
+}
+
+model AidRecord {
+  id          String   @id @default(uuid()) @db.Uuid
+  charityId   String   @map("charity_id") @db.Uuid
+  indigentId  String   @map("indigent_id") @db.Uuid
+  type        String
+  amount      Decimal? @db.Decimal(10, 2)
+  description String
+  providedAt  DateTime @map("provided_at")
+  createdBy   String   @map("created_by") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  charity  Charity  @relation(fields: [charityId], references: [id])
+  indigent Indigent @relation(fields: [indigentId], references: [id])
+  creator  User     @relation(fields: [createdBy], references: [id])
+
+  @@map("aid_records")
+}
+
+model AuditLog {
+  id           String   @id @default(uuid()) @db.Uuid
+  charityId    String?  @map("charity_id") @db.Uuid
+  userId       String?  @map("user_id") @db.Uuid
+  action       String
+  resourceType String   @map("resource_type")
+  resourceId   String   @map("resource_id") @db.Uuid
+  details      Json?    @db.JsonB
+  ipAddress    String?  @map("ip_address")
+  correlationId String  @map("correlation_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  charity Charity? @relation(fields: [charityId], references: [id])
+  user    User?    @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+model AbuseReport {
+  id              String   @id @default(uuid()) @db.Uuid
+  charityId       String   @map("charity_id") @db.Uuid
+  indigentId      String   @map("indigent_id") @db.Uuid
+  type            String
+  description     String
+  status          String   @default("open")
+  resolutionNotes String?  @map("resolution_notes")
+  createdBy       String   @map("created_by") @db.Uuid
+  reviewedBy      String?  @map("reviewed_by") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  charity  Charity  @relation(fields: [charityId], references: [id])
+  indigent Indigent @relation(fields: [indigentId], references: [id])
+  creator  User     @relation(fields: [createdBy], references: [id])
+
+  @@map("abuse_reports")
+}
+
+model ChangeRequest {
+  id           String    @id @default(uuid()) @db.Uuid
+  charityId    String    @map("charity_id") @db.Uuid
+  indigentId   String    @map("indigent_id") @db.Uuid
+  fieldName    String    @map("field_name")
+  oldValue     String?   @map("old_value")
+  newValue     String    @map("new_value")
+  reason       String
+  status       String    @default("pending")
+  reviewedBy   String?   @map("reviewed_by") @db.Uuid
+  reviewedAt   DateTime? @map("reviewed_at")
+  createdBy    String    @map("created_by") @db.Uuid
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  charity  Charity  @relation(fields: [charityId], references: [id])
+  indigent Indigent @relation(fields: [indigentId], references: [id])
+  creator  User     @relation(fields: [createdBy], references: [id])
+
+  @@map("change_requests")
+}
