@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
@@ -8,6 +9,9 @@ export default defineConfig({
       "api-contracts": "/packages/api-contracts/src",
       shared: "/packages/shared/src",
       config: "/packages/config/src",
+      "@": path.resolve(__dirname, "./src"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@lib": path.resolve(__dirname, "./src/lib"),
     },
   },
   server: {
