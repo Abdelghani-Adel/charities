@@ -1,5 +1,5 @@
-import { createRoute, redirect } from "@tanstack/react-router";
-import { Route as rootRoute } from "./__root";
+import { createRoute } from "@tanstack/react-router";
+import { Route as authenticatedRoute } from "./_authenticated";
 
 function DashboardPage() {
   return (
@@ -11,12 +11,7 @@ function DashboardPage() {
 }
 
 export const Route = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => authenticatedRoute,
   path: "/",
-  beforeLoad: ({ context }) => {
-    if (!context.auth.isAuthenticated) {
-      throw redirect({ to: "/login" });
-    }
-  },
   component: DashboardPage,
 });
